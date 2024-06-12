@@ -80,7 +80,7 @@ const Signup = () => {
     axios.post(postUrl,formdata)
     .then(res=>{
         //console.log(res.data);
-        navigate('/login');
+        navigate('/');
     })
     .then((error)=>{
       console.log(error);

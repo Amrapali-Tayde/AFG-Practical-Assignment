@@ -55,26 +55,41 @@ function Dashboard() {
     return (
 
         <>
-            <div className="row">
-                <div className="col-md-6">
 
-              
-            <h2 className="text-primary">Welcome { userdata.firstName }!</h2>
+<div className="container mt-5">
+      <div className="row justify-content-center">
+        <div className="col-12 col-md-7 col-lg-5">
+         
+           
+              <div className="row mt-2">
+              <div className="col-md-2"></div>
+              <div className="col-md-8 px-3 ml-3"></div>
+              <div className="text-left">
+              <h2 className="text-primary">Welcome { userdata.firstName }!</h2>
+              </div>
             {/* <h4>User Details:</h4>
             <span><strong>First Name: </strong> { userdata.firstName }</span><br />
             <span><strong>Last Name: </strong> { userdata.lastName }</span> */}
             
             {/* <div>{token}</div>   */}
-            <ol className="text-danger"> <h4>User Details: </h4>
+            
+            <ul className="text-danger mb-2 mt-3 ml-5 pl-5"> <h4>User Details: </h4>
                 {Object.entries(userdata).map(([key, value]) => (
                     <li key={key}>
                         <strong>{key}:</strong> {value}
                     </li>
                 ))}
-            </ol>
+            </ul>
             {/* <h4>{JSON.stringify(userdata, null, 2)}</h4> */}
-            </div>
-            </div>
+                </div>
+                </div>
+                </div>
+                </div>
+             
+    
+
+
+      
         </>
 
     )

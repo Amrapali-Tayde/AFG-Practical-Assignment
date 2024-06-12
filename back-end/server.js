@@ -6,8 +6,8 @@ const userModel = require('./model/user.js');
 const bcrypt = require('bcrypt');
 //import * as bcrypt from 'bcrypt';
 var jwt = require('jsonwebtoken');
-// const privateKey = "hghgyt56556";
-// const saltRounds = 10;
+const privateKey = "hghgyt56556";
+const saltRounds = 10;
 
 
 const app = express();
@@ -34,24 +34,24 @@ app.post("/api/login", async (req, res) => {
     const { email, password, recaptoken } = req.body;
 
     console.log(req.body);
-    
+
     // if (!recaptoken) {
     //     return res.status(400).json({ success: false, message: 'No token provided' });
     //   }
-    
+
     //   const secretKey = process.env.GOOGLE_RECAPTCHA_SITE_KEY;
     //   const verificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${recaptoken}`;
-    
+
     //   try {
     //     const response = await axios.post(verificationUrl);
     //     const data = response.data;
-    
+
     //     if (data.success && data.score > 0.5) {
     //     //  return res.json({ success: true });
     //       console.log("recaptcha success:", true);
     //     } else {
     //       console.log({ success: false, message: 'reCAPTCHA verification failed', score: data.score });
-          
+
     //     }
     //   } catch (error) {
     //    // return res.status(500).json({ success: false, message: 'Server error' });
@@ -61,10 +61,10 @@ app.post("/api/login", async (req, res) => {
     const user = await userModel.findOne({ email: email });
     // console.log(user);
 
-    const usermodel = user.toObject();
-    delete usermodel.password;
+    const usermodeln = user.toObject();
+    delete usermodeln.password;
 
-    console.log("usermodel:", usermodel);
+    console.log("usermodel:", usermodeln);
 
 
     if (!user) {
@@ -156,10 +156,10 @@ app.post("/api/signup", async (req, res) => {
     const user = { firstName, lastName, email, dob, countryCode, mobile, password: hashedPwd };
 
     const dbUser = await userModel.create(user);
-    const userModel = dbUser.toObject();
-    delete userModel.password;
+    const usermodel = dbUser.toObject();
+    delete usermodel.password;
 
-    res.json({ success: true, message: '', responsecode: 0, data: userModel });
+    res.json({ success: true, message: '', responsecode: 0, data: usermodel });
     //res.json(userModel); 
 });
 
@@ -188,7 +188,7 @@ app.get("/api/profile", async (req, res) => {
         console.log("usermodel:", usermodel);
         res.json({ success: true, message: "Profile sent successfully!", responsecode: 200, data: { profile: usermodel } });
 
-    } catch (err) {        
+    } catch (err) {
         res.json({ success: false, message: "Toekn Mismatched!", responsecode: 401 });
     }
 });
