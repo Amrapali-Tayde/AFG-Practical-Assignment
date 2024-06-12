@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
@@ -12,30 +12,29 @@ const Login = () => {
   const [loginData, setdata] = useState({
     email: "",
     password: "",
-    recaptoken: "",
+    //recaptoken: "",
   });
 
-  //const [recaptchaToken, setRecaptchaToken] = useState('');
+ 
+  // useEffect(() => {
+  //   const loadRecaptcha = async () => {
 
-  useEffect(() => {
-    const loadRecaptcha = async () => {
-
-      console.log('aaaaa');
-      if (window.grecaptcha) {
-        const token = await window.grecaptcha.execute('6Lexv_QpAAAAAHtbgpQPdMMH-yOlnBNmf8sW1pRR', { action: 'submit' });
-        console.log(token);
-        console.log('Amrapali');
-        setdata({ ...loginData, recaptoken: token })
-      }
-      else {
+  //     console.log('aaaaa');
+  //     if (window.grecaptcha) {
+  //       const token = await window.grecaptcha.execute('6Lexv_QpAAAAAHtbgpQPdMMH-yOlnBNmf8sW1pRR', { action: 'submit' });
+  //       console.log(token);
+  //       console.log('Amrapali');
+  //       setdata({ ...loginData, recaptoken: token })
+  //     }
+  //     else {
         
-      console.log('bbbbb');
-      }
+  //     console.log('bbbbb');
+  //     }
 
-    };
+  //   };
 
-    loadRecaptcha();
-  }, []);
+  //   loadRecaptcha();
+  // }, []);
 
   const navigate = useNavigate();
 

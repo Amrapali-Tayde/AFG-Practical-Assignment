@@ -6,8 +6,8 @@ const userModel = require('./model/user.js');
 const bcrypt = require('bcrypt');
 //import * as bcrypt from 'bcrypt';
 var jwt = require('jsonwebtoken');
-const privateKey = "hghgyt56556";
-const saltRounds = 10;
+// const privateKey = "hghgyt56556";
+// const saltRounds = 10;
 
 
 const app = express();
@@ -35,28 +35,28 @@ app.post("/api/login", async (req, res) => {
 
     console.log(req.body);
     
-    if (!recaptoken) {
-        return res.status(400).json({ success: false, message: 'No token provided' });
-      }
+    // if (!recaptoken) {
+    //     return res.status(400).json({ success: false, message: 'No token provided' });
+    //   }
     
-      const secretKey = process.env.GOOGLE_RECAPTCHA_SITE_KEY;
-      const verificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${recaptoken}`;
+    //   const secretKey = process.env.GOOGLE_RECAPTCHA_SITE_KEY;
+    //   const verificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${recaptoken}`;
     
-      try {
-        const response = await axios.post(verificationUrl);
-        const data = response.data;
+    //   try {
+    //     const response = await axios.post(verificationUrl);
+    //     const data = response.data;
     
-        if (data.success && data.score > 0.5) {
-        //  return res.json({ success: true });
-          console.log("recaptcha success:", true);
-        } else {
-          console.log({ success: false, message: 'reCAPTCHA verification failed', score: data.score });
+    //     if (data.success && data.score > 0.5) {
+    //     //  return res.json({ success: true });
+    //       console.log("recaptcha success:", true);
+    //     } else {
+    //       console.log({ success: false, message: 'reCAPTCHA verification failed', score: data.score });
           
-        }
-      } catch (error) {
-       // return res.status(500).json({ success: false, message: 'Server error' });
-       console.log(error);
-      };
+    //     }
+    //   } catch (error) {
+    //    // return res.status(500).json({ success: false, message: 'Server error' });
+    //    console.log(error);
+    //   };
 
     const user = await userModel.findOne({ email: email });
     // console.log(user);
