@@ -61,16 +61,18 @@ app.post("/api/login", async (req, res) => {
     const user = await userModel.findOne({ email: email });
     // console.log(user);
 
+    
+    if (!user) {
+        res.json({ "status": 404, "message": "User does not exists" });
+        return;
+    }
+
+    
     const usermodeln = user.toObject();
     delete usermodeln.password;
 
     console.log("usermodel:", usermodeln);
 
-
-    if (!user) {
-        res.json({ "status": 404, "message": "User does not exists" });
-        return;
-    }
 
     const isPwdMatch = await bcrypt.compare(password, user.password);
 
